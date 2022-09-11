@@ -1,0 +1,87 @@
+{% extends 'base.html' %} {% block content %} {% load static %}
+<link rel="stylesheet" href="{% static 'shop/style.css' %}" />
+
+<div class="container">
+	<div style="height: 100px"></div>
+	<div class="navbar">
+		<h2 class="title">Stereotypical Title and Logo</h2>
+		<div style="display: flex; gap: 24px; margin-right: 24px">
+			<img
+				style="width: 48px; height: 48px; object-fit: fill"
+				src="{% static 'shop/images/avatar.png' %}"
+			/>
+			<div class="cart-container">
+				<div class="cart-size">{{ cart_size }}</div>
+				<img
+					style="width: 48px; height: 48px; object-fit: fill"
+					src="{% static 'shop/images/cart.png' %}"
+				/>
+				<div class="cart-dropdown-container">
+					<div class="cart-dropdown">
+						<h4>Your Cart</h4>
+						{% if cart_size == 0 %}
+						<h3>Add an item! :)</h3>
+						{% endif %} {% for item in cart %}
+						<div
+							style="display: flex; align-items: center; gap: 12px; z-index: 50"
+						>
+							<img
+								style="width: 40px; height: 40px"
+								src="{{ item.item.image.url }}"
+							/>
+							<h5>{{ item.item.name }}</h5>
+							<a
+								href="{% url 'shop:reduce_from_cart' item.item.uuid %}"
+								class="cart-item-controls"
+								>-</a
+							>
+							<div class="cart-item-count">{{ item.count }}</div>
+							<a
+								href="{% url 'shop:add_to_cart' item.item.uuid %}"
+								class="cart-item-controls"
+								>+</a
+							>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="item-card-container">
+		<div class="button-container">
+			{% for item in items %}
+			<div class="item-card-button">
+				<a
+					href="{% url 'shop:add_to_cart' item.uuid %}"
+					class="item-card-cover"
+				>
+					<div
+						style="
+							font-weight: 700;
+							font-size: large;
+							font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+								'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+						"
+					>
+						{{ item.name }}
+					</div>
+					<div
+						style="
+							font-weight: 500;
+							font-size: medium;
+							font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+								'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+						"
+					>
+						Rp{{ item.get_price_in_rupiah }}
+					</div>
+					<div class="item-card-cta" style="border: none">Add to cart</div>
+				</a>
+				<img class="item-card-image" src="{{ item.image.url }}" />
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+{% endblock content %}

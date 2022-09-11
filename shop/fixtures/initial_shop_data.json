@@ -1,0 +1,50 @@
+[
+	{
+		"model": "shop.item",
+		"fields": {
+			"name": "iPhone 14 Pro Maag Maksimal",
+			"price": 14000000,
+			"description": "Bikin sakit Maag maksimal karena harganya mahal."
+		}
+	},
+	{
+		"model": "shop.item",
+		"fields": {
+			"name": "iPhone 14 Pro B aja",
+			"price": 12000000,
+			"description": "Bikin sakit Maag, tapi ga parah amat."
+		}
+	},
+	{
+		"model": "shop.item",
+		"fields": {
+			"name": "iPhone 14 Pro Maag Minimal",
+			"price": 10000000,
+			"description": "Bikin sakit Maag minimal karena harganya mahal, tapi ga super mahal."
+		}
+	},
+	{
+		"model": "shop.item",
+		"fields": {
+			"name": "iPhone 13 Pro Maag Maksimal",
+			"price": 12000000,
+			"description": "Bikin sakit Maag maksimal karena harganya mahal."
+		}
+	},
+	{
+		"model": "shop.item",
+		"fields": {
+			"name": "iPhone 13 Pro B aja",
+			"price": 10000000,
+			"description": "Bikin sakit Maag, tapi ga parah amat."
+		}
+	},
+	{
+		"model": "shop.item",
+		"fields": {
+			"name": "iPhone 13 Pro Maag Minimal",
+			"price": 8000000,
+			"description": "Bikin sakit Maag minimal karena harganya mahal, tapi ga super mahal."
+		}
+	}
+]
