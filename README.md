@@ -1,62 +1,90 @@
-# Template Proyek Django PBP
+# Tugas 2 PBP 12 September 2022
 
-Pemrograman Berbasis Platform (CSGE602022) - diselenggarakan oleh Fakultas Ilmu Komputer Universitas Indonesia, Semester Ganjil 2022/2023
+Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html;
 
-*Read this in other languages: [Indonesian](README.md), [English](README.en.md)*
+## 2. Virtual Environtment
 
-## Pendahuluan
+Virtual Environment digunakan untuk menjaga lingkungan development tetap konsisten dan terpisah dari lingkungan pribadi Anda, bisa saja anda mengerjakan projek yang menggunakan versi python berbeda dengan python yang ada di komputer pribadi Anda. Virtual environment membantu agar versioning yang instalasi yang Anda lakukan tetap terjaga didalam environment tersebut.
 
-Repositori ini merupakan sebuah template yang dirancang untuk membantu mahasiswa yang sedang mengambil mata kuliah Pemrograman Berbasis Platform (CSGE602022) mengetahui struktur sebuah proyek aplikasi Django serta file dan konfigurasi yang penting dalam berjalannya aplikasi. Kamu dapat dengan bebas menyalin isi dari repositori ini atau memanfaatkan repositori ini sebagai pembelajaran sekaligus awalan dalam membuat sebuah proyek Django.
+## 3. Penjelasan Implementasi
 
-## Cara Menggunakan
+### 1. Implementasi `views.py`
 
-Apabila kamu ingin menggunakan repositori ini sebagai repositori awalan yang nantinya akan kamu modifikasi:
+Saya membuat 3 fungsi, yang pertama fungsi index, fungsi index bisa dilihat sebagai berikut:
 
-1. Buka laman GitHub repositori templat kode, lalu klik tombol "**Use this template**"
-   untuk membuat salinan repositori ke dalam akun GitHub milikmu.
-2. Buka laman GitHub repositori yang dibuat dari templat, lalu gunakan perintah
-   `git clone` untuk menyalin repositorinya ke suatu lokasi di dalam sistem
-   berkas (_filesystem_) komputermu:
+```py
+def index(request):
+	cart = Cart.objects.first()
+	cart = [{"item": cart_item.item, "count": cart_item.count} for cart_item in cart.items.all()]
 
-   ```shell
-   git clone <URL ke repositori di GitHub> <path ke suatu lokasi di filesystem>
-   ```
-3. Masuk ke dalam repositori yang sudah di-_clone_ dan jalankan perintah berikut
-   untuk menyalakan _virtual environment_:
+	return render(request, "shop.html", {
+		"cart_size": len(cart),
+		"cart": cart,
+		"items": Item.objects.all()
+	})
+```
 
-   ```shell
-   python -m venv env
-   ```
-4. Nyalakan environment dengan perintah berikut:
+Fungsi index mengembalikan render dari sebuah file yang bernama `shop.html` (disimpan di template/shop.html), dan diberikan context yang berisi cart_size, cart, dan items, cart, masing-masing data yang disediakan ke front-end (HTML) melalui context diambil dari database yang tabelnya dispecify di `models.py`
 
-   ```shell
-   # Windows
-   .\env\Scripts\activate
-   # Linux/Unix, e.g. Ubuntu, MacOS
-   source env/bin/activate
-   ```
-5. Install dependencies yang dibutuhkan untuk menjalankan aplikasi dengan perintah berikut:
+### 2. Implementasi `urls.py`
 
-   ```shell
-   pip install -r requirements.txt
-   ```
+`urls.py` adalah file yang mengatur routing aplikasi django kita
 
-6. Jalankan aplikasi Django menggunakan server pengembangan yang berjalan secara
-   lokal:
+```py
+urlpatterns = [
+	path('', index, name='index'),
+	path('add_to_cart/<str:item_uuid>/', add_to_cart, name="add_to_cart"),
+	path('reduce_from_cart/<str:item_uuid>/', reduce_from_cart, name="reduce_from_cart"),
+]
+```
 
-   ```shell
-   python manage.py runserver
-   ```
-7. Bukalah `http://localhost:8000` pada browser favoritmu untuk melihat apakah aplikasi sudah berjalan dengan benar.
+Seperti yang bisa dilihat di kode di atas, masing-masing path yang dinyatakan masing-masing menyatakan sebuah route. Sebagai contoh:
 
-## Contoh Deployment 
+```py
+path('', index, name='index')
+```
 
-Pada template ini, deployment dilakukan dengan memanfaatkan GitHub Actions sebagai _runner_ dan Heroku sebagai platform Hosting aplikasi. 
+Path tersebut menyatakan `url: {domain}/shop/, function: index, nama: 'index'` . Fungsi index akan dipanggil saat route yang dipanggil sesuai dengan path yang dinyatakan.
 
-Untuk melakukan deployment, kamu dapat melihat instruksi yang ada pada [Tutorial 0](https://pbp-fasilkom-ui.github.io/ganjil-2023/assignments/tutorial/tutorial-0).
+### 3. Implementasi `shop.html`
 
-Untuk contoh aplikasi Django yang sudah di deploy, dapat kamu akses di [https://django-pbp-template.herokuapp.com/](https://django-pbp-template.herokuapp.com/)
+Dari data yang kita berikan dalam bentuk context ke template (HTML), kita bisa tampilkan data yang diberikan tersebut
 
-## Credits
+```html
+<div class="item-card-container">
+	<div class="button-container">
+		{% for item in items %}
+		<div class="item-card-button">
+			<a href="{% url 'shop:add_to_cart' item.uuid %}" class="item-card-cover">
+				<div
+					style="
+							font-weight: 700;
+							font-size: large;
+							font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+								'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+						"
+				>
+					{{ item.name }}
+				</div>
+				<div
+					style="
+							font-weight: 500;
+							font-size: medium;
+							font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+								'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+						"
+				>
+					Rp{{ item.get_price_in_rupiah }}
+				</div>
+				<div class="item-card-cta" style="border: none">Add to cart</div>
+			</a>
+			<img class="item-card-image" src="{{ item.image.url }}" />
+		</div>
+		{% endfor %}
+	</div>
+</div>
+```
 
-Template ini dibuat berdasarkan [PBP Ganjil 2021](https://gitlab.com/PBP-2021/pbp-lab) yang ditulis oleh Tim Pengajar Pemrograman Berbasis Platform 2021 ([@prakashdivyy](https://gitlab.com/prakashdivyy)) dan [django-template-heroku](https://github.com/laymonage/django-template-heroku) yang ditulis oleh [@laymonage, et al.](https://github.com/laymonage). Template ini dirancang sedemikian rupa sehingga mahasiswa dapat menjadikan template ini sebagai awalan serta acuan dalam mengerjakan tugas maupun dalam berkarya.
+Seperti contoh HTML di atas, kita bisa lihat bahwa data-data yang diberikan oleh backend diterima oleh frontend kita, contoh penggunaan data `{{ item.name }}` artinya cek attribut `name` dari variabel `name` yang di-_passing_ oleh backend.
+
+## 4. Deployment
