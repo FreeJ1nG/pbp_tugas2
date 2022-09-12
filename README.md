@@ -1,6 +1,8 @@
 # Tugas 2 PBP 12 September 2022
 
-Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html;
+## 1. Bagan Request User dan korelasi `urls.py`, `models.py`, `views.py`, dan `html`
+
+![Bagan](bagan.png)
 
 ## 2. Virtual Environtment
 
@@ -88,3 +90,7 @@ Dari data yang kita berikan dalam bentuk context ke template (HTML), kita bisa t
 Seperti contoh HTML di atas, kita bisa lihat bahwa data-data yang diberikan oleh backend diterima oleh frontend kita, contoh penggunaan data `{{ item.name }}` artinya cek attribut `name` dari variabel `name` yang di-_passing_ oleh backend.
 
 ## 4. Deployment
+
+Deployment Heroku untuk app ini bisa dilihat melalui: [Heroku App](https://andrew-pbp-tugas2.herokuapp.com/shop/).
+
+Deployment heroku berjalan secara otomatis melalui `delpoy.yml` yang dijalankan oleh Github Actions, setelah menyesuaikan settings.py untuk deployment, push repository github dan masukkan `HEROKU_API_KEY` dan `HEROKU_APP_NAME` kepada secrets variabel di github dan heroku.
