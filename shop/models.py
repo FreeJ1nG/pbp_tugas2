@@ -5,7 +5,7 @@ import uuid
 
 # Create your models here.
 class Item(models.Model):
-  uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+  uuid = models.UUIDField(primary_key=True, default=uuid.uuid4)
   name = models.CharField(max_length=50)
   price = models.IntegerField()
   description = models.TextField()
