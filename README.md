@@ -16,14 +16,14 @@ Saya membuat 3 fungsi, yang pertama fungsi index, fungsi index bisa dilihat seba
 
 ```py
 def index(request):
-	cart = Cart.objects.first()
-	cart = [{"item": cart_item.item, "count": cart_item.count} for cart_item in cart.items.all()]
+  cart = Cart.objects.first()
+  cart = [{"item": cart_item.item, "count": cart_item.count} for cart_item in cart.items.all()]
 
-	return render(request, "shop.html", {
-		"cart_size": len(cart),
-		"cart": cart,
-		"items": Item.objects.all()
-	})
+  return render(request, "shop.html", {
+    "cart_size": len(cart),
+    "cart": cart,
+    "items": Item.objects.all()
+  })
 ```
 
 Fungsi index mengembalikan render dari sebuah file yang bernama `shop.html` (disimpan di template/shop.html), dan diberikan context yang berisi cart_size, cart, dan items, cart, masing-masing data yang disediakan ke front-end (HTML) melalui context diambil dari database yang tabelnya dispecify di `models.py`
@@ -34,9 +34,9 @@ Fungsi index mengembalikan render dari sebuah file yang bernama `shop.html` (dis
 
 ```py
 urlpatterns = [
-	path('', index, name='index'),
-	path('add_to_cart/<str:item_uuid>/', add_to_cart, name="add_to_cart"),
-	path('reduce_from_cart/<str:item_uuid>/', reduce_from_cart, name="reduce_from_cart"),
+  path('', index, name='index'),
+  path('add_to_cart/<str:item_uuid>/', add_to_cart, name="add_to_cart"),
+  path('reduce_from_cart/<str:item_uuid>/', reduce_from_cart, name="reduce_from_cart"),
 ]
 ```
 
@@ -60,21 +60,21 @@ Dari data yang kita berikan dalam bentuk context ke template (HTML), kita bisa t
 			<a href="{% url 'shop:add_to_cart' item.uuid %}" class="item-card-cover">
 				<div
 					style="
-							font-weight: 700;
-							font-size: large;
-							font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
-								'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-						"
+              font-weight: 700;
+              font-size: large;
+              font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+                'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            "
 				>
 					{{ item.name }}
 				</div>
 				<div
 					style="
-							font-weight: 500;
-							font-size: medium;
-							font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
-								'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-						"
+              font-weight: 500;
+              font-size: medium;
+              font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+                'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            "
 				>
 					Rp{{ item.get_price_in_rupiah }}
 				</div>
