@@ -13,7 +13,7 @@ def index(request):
   if Cart.objects.count() == 0:
     Cart.objects.create()
   cart = Cart.objects.first()
-  cart = [{"item": cart_item.item, "count": cart_item.count} for cart_item in cart.items.all()]
+  cart = [{"item": cart_item.item, "amount": cart_item.amount} for cart_item in cart.items.all()]
   return render(request, "shop.html", { "cart_size": len(cart), "cart": cart, "items": Item.objects.all() })
 
 
@@ -27,10 +27,10 @@ def add_to_cart(request, item_uuid):
 
   try:
     cart_item = CartItem.objects.get(item=item)
-    cart_item.count += 1
+    cart_item.amount += 1
     cart_item.save()
   except CartItem.DoesNotExist:
-    cart_item = CartItem.objects.create(item=item, count=1)
+    cart_item = CartItem.objects.create(item=item, amount=1)
   
   cart.items.add(cart_item)
   cart.save()
@@ -48,11 +48,11 @@ def reduce_from_cart(request, item_uuid):
   
   try:
     cart_item = CartItem.objects.get(item=item)
-    if cart_item.count == 1:
+    if cart_item.amount == 1:
       cart.items.remove(cart_item)
       cart_item.delete()
     else:
-      cart_item.count -= 1
+      cart_item.amount -= 1
       cart_item.save()
   except CartItem.DoesNotExist:
     return Http404("Something went wrong!")

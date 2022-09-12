@@ -21,7 +21,7 @@ class Item(models.Model):
 
 class CartItem(models.Model):
   item = models.OneToOneField(Item, on_delete=models.CASCADE)
-  count = models.IntegerField()
+  amount = models.IntegerField()
   
   
 class Cart(models.Model):
