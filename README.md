@@ -54,36 +54,36 @@ Dari data yang kita berikan dalam bentuk context ke template (HTML), kita bisa t
 
 ```html
 <div class="item-card-container">
-	<div class="button-container">
-		{% for item in items %}
-		<div class="item-card-button">
-			<a href="{% url 'shop:add_to_cart' item.uuid %}" class="item-card-cover">
-				<div
-					style="
+  <div class="button-container">
+    {% for item in items %}
+    <div class="item-card-button">
+      <a href="{% url 'shop:add_to_cart' item.uuid %}" class="item-card-cover">
+        <div
+          style="
               font-weight: 700;
               font-size: large;
               font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
                 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
             "
-				>
-					{{ item.name }}
-				</div>
-				<div
-					style="
+        >
+          {{ item.name }}
+        </div>
+        <div
+          style="
               font-weight: 500;
               font-size: medium;
               font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
                 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
             "
-				>
-					Rp{{ item.get_price_in_rupiah }}
-				</div>
-				<div class="item-card-cta" style="border: none">Add to cart</div>
-			</a>
-			<img class="item-card-image" src="{{ item.image.url }}" />
-		</div>
-		{% endfor %}
-	</div>
+        >
+          Rp{{ item.get_price_in_rupiah }}
+        </div>
+        <div class="item-card-cta" style="border: none">Add to cart</div>
+      </a>
+      <img class="item-card-image" src="{{ item.image.url }}" />
+    </div>
+    {% endfor %}
+  </div>
 </div>
 ```
 
