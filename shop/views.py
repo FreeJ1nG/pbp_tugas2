@@ -10,6 +10,8 @@ from django.urls import reverse
 # DELETE
 
 def index(request):
+  if Cart.objects.count() == 0:
+    Cart.objects.create()
   cart = Cart.objects.first()
   cart = [{"item": cart_item.item, "count": cart_item.count} for cart_item in cart.items.all()]
   return render(request, "shop.html", { "cart_size": len(cart), "cart": cart, "items": Item.objects.all() })
