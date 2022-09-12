@@ -4,7 +4,8 @@
 		"fields": {
 			"name": "iPhone 14 Pro Maag Maksimal",
 			"price": 14000000,
-			"description": "Bikin sakit Maag maksimal karena harganya mahal."
+			"description": "Bikin sakit Maag maksimal karena harganya mahal.",
+			"imageSrc": "https://i.imgur.com/Te1vdCG.png"
 		}
 	},
 	{
@@ -12,7 +13,8 @@
 		"fields": {
 			"name": "iPhone 14 Pro B aja",
 			"price": 12000000,
-			"description": "Bikin sakit Maag, tapi ga parah amat."
+			"description": "Bikin sakit Maag, tapi ga parah amat.",
+			"imageSrc": "https://i.imgur.com/OgBAgNq.png"
 		}
 	},
 	{
@@ -20,7 +22,8 @@
 		"fields": {
 			"name": "iPhone 14 Pro Maag Minimal",
 			"price": 10000000,
-			"description": "Bikin sakit Maag minimal karena harganya mahal, tapi ga super mahal."
+			"description": "Bikin sakit Maag minimal karena harganya mahal, tapi ga super mahal.",
+			"imageSrc": "https://i.imgur.com/SWHVmML.png"
 		}
 	},
 	{
@@ -28,7 +31,8 @@
 		"fields": {
 			"name": "iPhone 13 Pro Maag Maksimal",
 			"price": 12000000,
-			"description": "Bikin sakit Maag maksimal karena harganya mahal."
+			"description": "Bikin sakit Maag maksimal karena harganya mahal.",
+			"imageSrc": "https://i.imgur.com/jorxCG4.png"
 		}
 	},
 	{
@@ -36,7 +40,8 @@
 		"fields": {
 			"name": "iPhone 13 Pro B aja",
 			"price": 10000000,
-			"description": "Bikin sakit Maag, tapi ga parah amat."
+			"description": "Bikin sakit Maag, tapi ga parah amat.",
+			"imageSrc": "https://i.imgur.com/KzHuSvw.png"
 		}
 	},
 	{
@@ -44,7 +49,8 @@
 		"fields": {
 			"name": "iPhone 13 Pro Maag Minimal",
 			"price": 8000000,
-			"description": "Bikin sakit Maag minimal karena harganya mahal, tapi ga super mahal."
+			"description": "Bikin sakit Maag minimal karena harganya mahal, tapi ga super mahal.",
+			"imageSrc": "https://i.imgur.com/6ty0r2c.jpeg"
 		}
 	}
 ]

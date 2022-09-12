@@ -1,4 +1,3 @@
-from audioop import reverse
 from django.utils import timezone
 from django.db import models
 import uuid
@@ -10,7 +9,7 @@ class Item(models.Model):
   price = models.IntegerField()
   description = models.TextField()
   pub_date = models.DateField(default=timezone.now)
-  image = models.ImageField(upload_to="images", null=True, blank=True)
+  imageSrc = models.CharField(max_length=50, null=True, blank=True)
   
   @property
   def get_price_in_rupiah(self):

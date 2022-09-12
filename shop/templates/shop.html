@@ -3,7 +3,7 @@
 
 <div class="container">
 	<div style="height: 100px"></div>
-	<div class="navbar">
+	<div class="navbar" style="z-index: 80">
 		<h2 class="title">Stereotypical Title and Logo</h2>
 		<div style="display: flex; gap: 24px; margin-right: 24px">
 			<img
@@ -27,7 +27,7 @@
 						>
 							<img
 								style="width: 40px; height: 40px"
-								src="{{ item.item.image.url }}"
+								src="{{ item.item.imageSrc }}"
 							/>
 							<h5>{{ item.item.name }}</h5>
 							<a
@@ -78,7 +78,7 @@
 					</div>
 					<div class="item-card-cta" style="border: none">Add to cart</div>
 				</a>
-				<img class="item-card-image" src="{{ item.image.url }}" />
+				<img class="item-card-image" src="{{ item.imageSrc }}" />
 			</div>
 			{% endfor %}
 		</div>
