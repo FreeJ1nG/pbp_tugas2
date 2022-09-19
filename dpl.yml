@@ -28,6 +28,8 @@ jobs:
         run: dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
       - name: Run migrations on Heroku
         run: heroku run --app $HEROKU_APP_NAME migrate
+      - name: Run load initial data on heroku
+        run: heroku run --app $HEROKU_APP_NAME loaddata initial_watchlist_data.json
       - uses: chrnorm/deployment-action@releases/v1
         name: Create GitHub deployment
         with:
