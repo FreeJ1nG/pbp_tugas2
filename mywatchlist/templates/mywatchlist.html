@@ -1,0 +1,43 @@
+{% extends 'base.html' %} {% block content %} {% load static %}
+<link rel="stylesheet" href="{% static 'mywatchlist/style.css' %}" />
+
+<table class="container">
+	<tr>
+		<th style="width: 200px" class="title">Title</th>
+		<th class="title">Rating</th>
+		<th style="width: 160px" class="title">Release Date</th>
+		<th class="title">Watched</th>
+		<th class="title">Review</th>
+	</tr>
+	{% for movie in watchlist %}
+	<tr>
+		<th class="content movie-title">{{ movie.title }}</th>
+		<th class="content">
+			<div class="rating">
+				<img
+					src="{% static 'mywatchlist/images/star.png' %}"
+					style="width: 20px; height: 20px"
+				/>
+				{{ movie.rating }}
+			</div>
+		</th>
+		<th class="content release-date">{{ movie.get_formatted_date }}</th>
+		<th class="content">
+			{% if movie.watched %}
+			<img
+				src="{% static 'mywatchlist/images/check.png' %}"
+				style="width: 20px; height: 20px"
+			/>
+			{% else %}
+			<img
+				src="{% static 'mywatchlist/images/x.png' %}"
+				style="width: 20px; height: 20px"
+			/>
+			{% endif %}
+		</th>
+		<th class="content review">{{ movie.review }}</th>
+	</tr>
+	{% endfor %}
+</table>
+
+{% endblock content %}

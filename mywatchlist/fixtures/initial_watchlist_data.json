@@ -1,0 +1,112 @@
+[
+	{
+		"model": "mywatchlist.mywatchlist",
+		"pk": 1,
+		"fields": {
+			"watched": true,
+			"title": "Thor: Ragnarok",
+			"rating": 4.5,
+			"release_date": "2017-10-25",
+			"review": "Imprisoned on the planet Sakaar, Thor must race against time to return to Asgard and stop Ragnarök, the destruction of his world, at the hands of the powerful and ruthless villain Hela."
+		}
+	},
+	{
+		"model": "mywatchlist.mywatchlist",
+		"pk": 2,
+		"fields": {
+			"watched": true,
+			"title": "Kimi no Nawa",
+			"rating": 5.0,
+			"release_date": "2016-12-07",
+			"review": "Your Name is a 2016 Japanese animated romantic fantasy film produced by CoMix Wave Films and distributed by Toho. It depicts a high school boy in Tokyo and a high school girl in the Japanese countryside who suddenly and inexplicably begin to swap bodies."
+		}
+	},
+	{
+		"model": "mywatchlist.mywatchlist",
+		"pk": 3,
+		"fields": {
+			"watched": true,
+			"title": "5 Centimeters per Second",
+			"rating": 4.85,
+			"release_date": "2007-03-03",
+			"review": "Takaki and Akari are in elementary school and over time become best friends. Their friendship is put to the test when Akari has to move to another city."
+		}
+	},
+	{
+		"model": "mywatchlist.mywatchlist",
+		"pk": 4,
+		"fields": {
+			"watched": true,
+			"title": "Tenki no Ko",
+			"rating": 4.7,
+			"release_date": "2019-08-21",
+			"review": "In Tokyo, a runaway high school student facing financial struggles ends up with a job at a small-time publisher. One day, he meets a young girl who has the ability to control the weather."
+		}
+	},
+	{
+		"model": "mywatchlist.mywatchlist",
+		"pk": 5,
+		"fields": {
+			"watched": true,
+			"title": "Doctor Strange: Multiverse of Madness",
+			"rating": 4.9,
+			"release_date": "2022-05-05",
+			"review": "Doctor Strange in the Multiverse of Madness is a 2022 American superhero film based on Marvel Comics featuring the character Doctor Strange. Produced by Marvel Studios and distributed by Walt Disney Studios Motion Pictures, it is the sequel to Doctor Strange and the 28th film in the Marvel Cinematic Universe."
+		}
+	},
+	{
+		"model": "mywatchlist.mywatchlist",
+		"pk": 6,
+		"fields": {
+			"watched": false,
+			"title": "Shang-Chi and The Legend of The Ten Rings",
+			"rating": 4.0,
+			"release_date": "2021-09-30",
+			"review": "Shang-Chi and the Legend of the Ten Rings is a 2021 American superhero film based on Marvel Comics featuring the character Shang-Chi. Produced by Marvel Studios and distributed by Walt Disney Studios Motion Pictures, it is the 25th film in the Marvel Cinematic Universe."
+		}
+	},
+	{
+		"model": "mywatchlist.mywatchlist",
+		"pk": 7,
+		"fields": {
+			"watched": true,
+			"title": "Captain Marvel",
+			"rating": 4.3,
+			"release_date": "2019-05-08",
+			"review": "Amidst a mission, Vers, a Kree warrior, gets separated from her team and is stranded on Earth. However, her life takes an unusual turn after she teams up with Fury, a S.H.I.E.L.D. agent."
+		}
+	},
+	{
+		"model": "mywatchlist.mywatchlist",
+		"pk": 8,
+		"fields": {
+			"watched": true,
+			"title": "Interstellar",
+			"rating": 5.0,
+			"release_date": "2014-11-06",
+			"review": "When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, Joseph Cooper, is tasked to pilot a spacecraft, along with a team of researchers, to find a new planet for humans."
+		}
+	},
+	{
+		"model": "mywatchlist.mywatchlist",
+		"pk": 9,
+		"fields": {
+			"watched": false,
+			"title": "The Martian",
+			"rating": 4.95,
+			"release_date": "2015-09-30",
+			"review": "Mark Watney is stranded on the planet of Mars after his crew leaves him behind, presuming him to be dead due to a storm. With minimum supplies, Mark struggles to keep himself alive."
+		}
+	},
+	{
+		"model": "mywatchlist.mywatchlist",
+		"pk": 10,
+		"fields": {
+			"watched": true,
+			"title": "Inception",
+			"rating": 4.86,
+			"release_date": "2010-07-16",
+			"review": "Cobb steals information from his targets by entering their dreams. Saito offers to wipe clean Cobb's criminal history as payment for performing an inception on his sick competitor's son."
+		}
+	}
+]
