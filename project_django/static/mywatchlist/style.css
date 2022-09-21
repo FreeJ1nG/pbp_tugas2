@@ -1,0 +1,62 @@
+table,
+td,
+th {
+	font-weight: 500;
+}
+
+tr:nth-child(even) {
+	background-color: white;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.title {
+	font-size: large;
+	font-weight: bold;
+	padding: 12px;
+}
+
+.content {
+	padding: 8px;
+}
+
+.rating {
+	display: flex;
+	gap: 12px;
+	align-items: center;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-weight: bold;
+}
+
+.release-date {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.movie-title {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.review {
+	font-size: 12px;
+	width: 200px;
+}
+
+@media screen and (min-width: 676px) {
+	.review {
+		font-size: 14px;
+		width: 300px;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.review {
+		width: fit-content;
+	}
+}
+
+.container {
+	background-color: powderblue;
+}

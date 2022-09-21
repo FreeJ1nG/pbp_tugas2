@@ -72,11 +72,21 @@ Beberapa keuntungan dari JSON adalah:
 
 - `{% load static %}` dan import `style.css` yang dibuat membantu agar styling css yang dibuat diterapkan ke `watchlist.html`
 
+## Screenshot Postman Request
+
+![HTML](/images/html.png)
+![JSON](/images/json.png)
+![XML](/images/xml.png)
+
+## Screenshot Tests `OK`
+
+![Tests](/images/test.png)
+
 # Tugas 2 PBP 12 September 2022
 
 ## 1. Bagan Request User dan korelasi `urls.py`, `models.py`, `views.py`, dan `html`
 
-![Bagan](bagan.png)
+![Bagan](./images/bagan.png)
 
 ## 2. Virtual Environtment
 
