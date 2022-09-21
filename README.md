@@ -48,9 +48,9 @@ Beberapa keuntungan dari JSON adalah:
 ### Pembuatan `models.py`
 
 - Buat sebuah Model `MyWatchList` dengan fields:
-  - watched: Boolean Field (default = $False$)
-  - title: Character Field (max_length = $100$)
-  - rating: Decimal Field ($1 \leq rating \leq $)
+  - watched: Boolean Field (default = False)
+  - title: Character Field (max_length = 100)
+  - rating: Decimal Field (range = [1 ... 5])
   - release_date: Date Field (menyimpan tanggal/bulan/tahun)
   - review: Text Field
 
