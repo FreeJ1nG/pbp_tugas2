@@ -20,10 +20,15 @@ def show_json(request):
   )
 
 def show_html(request):
+  watchlist = MyWatchList.objects.all()
+  watched = len(watchlist.filter(watched = True))
+  unwatched = len(watchlist.filter(watched = False))
   return render(
     request,
     "mywatchlist.html",
     {
-      "watchlist": MyWatchList.objects.all()
+      "watchlist": watchlist,
+      "watched": watched,
+      "unwatched": unwatched,
     }
   )
