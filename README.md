@@ -48,23 +48,23 @@ Beberapa keuntungan dari JSON adalah:
 ### Pembuatan `models.py`
 
 - Buat sebuah Model `MyWatchList` dengan fields:
-  1. watched: Boolean Field (default = $False$)
-  2. title: Character Field (max_length = $100$)
-  3. rating: Decimal Field ($1 \leq rating \leq $)
-  4. release_date: Date Field (menyimpan tanggal/bulan/tahun)
-  5. review: Text Field
+  - watched: Boolean Field (default = $False$)
+  - title: Character Field (max_length = $100$)
+  - rating: Decimal Field ($1 \leq rating \leq $)
+  - release_date: Date Field (menyimpan tanggal/bulan/tahun)
+  - review: Text Field
 
 ### Pembuatan `views.py` dan `urls.py`
 
 - Pembuatan `show_xml`, `show_json`, dan `show_html`
 
-  1. `show_xml` dan `show_json` hanya mengembalikan data pada model `MyWatchList` dalam bentuk **JSON** dan **XML**
+  - `show_xml` dan `show_json` hanya mengembalikan data pada model `MyWatchList` dalam bentuk **JSON** dan **XML**
 
-  2. `show_html` menerima context yang berupa data watchlist di database, dan mengembalikan `watchlist.html`
+  - `show_html` menerima context yang berupa data watchlist di database, dan mengembalikan `watchlist.html`
 
 - Pembuatan `urls.py`
 
-  1. `urls.py` memiliki 3 routes, `show_html`, `show_json`, `show_xml`, dan `index` yang mengembalikan HttpResponse kosong.
+  - `urls.py` memiliki 3 routes, `show_html`, `show_json`, `show_xml`, dan `index` yang mengembalikan HttpResponse kosong.
 
 ### Pembuatan `watchlist.html`
 
