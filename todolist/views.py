@@ -13,7 +13,7 @@ from todolist.models import Task
 def show_todolist(request):
   return render(request, "todolist.html", 
     {
-      "tasks": Task.objects.all(),
+      "tasks": Task.objects.filter(user=request.user),
       "last_update": request.COOKIES.get("last_update", None),
     }
   )
