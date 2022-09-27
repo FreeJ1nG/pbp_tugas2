@@ -30,6 +30,11 @@ def create_task(request):
   
   return render(request, "create_task.html", {})
 
+def delete_task(request, task_id):
+  task = Task.objects.get(id = task_id)
+  task.delete()
+  return redirect('todolist:show_todolist')
+
 def invert_task_status(request, task_id):
   task = Task.objects.get(id = task_id)
   task.is_finished = not task.is_finished
