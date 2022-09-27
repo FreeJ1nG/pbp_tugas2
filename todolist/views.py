@@ -32,7 +32,7 @@ def create_task(request):
 
 def invert_task_status(request, task_id):
   task = Task.objects.get(id = task_id)
-  task.done = not task.done
+  task.is_finished = not task.is_finished
   task.save()
   return redirect("todolist:show_todolist")
 
