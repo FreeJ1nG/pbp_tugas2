@@ -15,23 +15,16 @@
 	</a>
 	{% for task in tasks %}
 	<div key="task.id" class="task-container">
-		<a
-			data-bs-toggle="collapse"
-			href="#collapse{{task.id}}"
-			role="button"
-			aria-expanded="false"
-			aria-controls="collapse{{task.id}}"
-			style="display: flex; flex-direction: column; gap: 8px; flex-grow: 1"
-		>
+		<div style="display: flex; flex-direction: column; gap: 8px; flex-grow: 1">
 			<div class="task-title">
 				<div>{{ task.title }}</div>
 			</div>
-			<div class="collapse task-description" id="collapse{{task.id}}">
+			<div class="task-description">
 				<hr />
 				<div style="font-size: 12px">{{ task.date | naturaltime }}</div>
 				<pre>{{ task.description }}</pre>
 			</div>
-		</a>
+		</div>
 		<div class="task-checkbox-container">
 			<a
 				href="{% url 'todolist:invert-task-status' task.id %}"
