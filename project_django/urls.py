@@ -23,6 +23,7 @@ urlpatterns = [
     path('', include('example_app.urls')),
     path('shop/', include('shop.urls')),
     path('mywatchlist/', include('mywatchlist.urls')),
+    path('todolist/', include('todolist.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 # TODO: Implement Routings Here

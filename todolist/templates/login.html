@@ -1,0 +1,48 @@
+{% extends 'base.html' %} {% block meta %}
+<title>Login</title>
+{% endblock meta %} {% block content %}
+
+<div class="container login" style="gap: 16px">
+	<h1>Login</h1>
+
+	<form method="POST" action="">
+		{% csrf_token %}
+		<div style="display: flex; flex-direction: column; gap: 32px">
+			<div style="display: flex; flex-direction: column; gap: 8px">
+				<div style="display: flex; flex-direction: column; gap: 4px">
+					<div>Username:</div>
+					<input
+						type="text"
+						name="username"
+						placeholder="Username"
+						class="form-control"
+					/>
+				</div>
+				<div style="display: flex; flex-direction: column; gap: 4px">
+					<div>Password:</div>
+					<input
+						type="password"
+						name="password"
+						placeholder="Password"
+						class="form-control"
+					/>
+				</div>
+			</div>
+			<input class="btn btn-primary login_btn" type="submit" value="Login" />
+		</div>
+	</form>
+
+	{% if messages %}
+	<ul>
+		{% for message in messages %}
+		<li>{{ message }}</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+	<div style="display: flex; flex-direction: row; gap: 8px">
+		<div>Belum mempunyai akun?</div>
+		<a href="{% url 'todolist:register' %}" style="color: blue">Buat Akun</a>
+	</div>
+</div>
+
+{% endblock content %}

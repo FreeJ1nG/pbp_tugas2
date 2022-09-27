@@ -1,0 +1,53 @@
+{% extends 'base.html' %} {% block content %} {% load static %}
+<link rel="stylesheet" href="{% static 'todolist/style.css' %}" />
+{% load humanize %}
+
+<div class="container">
+	<a class="btn btn-primary" href="{% url 'todolist:create-task' %}">
+		<div style="display: flex; align-items: center; gap: 12px">
+			<div>Add new task</div>
+			<img
+				src="{% static 'todolist/images/plus.png' %}"
+				alt="plus"
+				style="width: 16px; height: 16px"
+			/>
+		</div>
+	</a>
+	{% for task in tasks %}
+	<div key="task.id" class="task-container">
+		<a
+			data-bs-toggle="collapse"
+			href="#collapse{{task.id}}"
+			role="button"
+			aria-expanded="false"
+			aria-controls="collapse{{task.id}}"
+			style="display: flex; flex-direction: column; gap: 8px; flex-grow: 1"
+		>
+			<div class="task-title">
+				<div>{{ task.title }}</div>
+			</div>
+			<div class="collapse task-description" id="collapse{{task.id}}">
+				<hr />
+				<div style="font-size: 12px">{{ task.date | naturaltime }}</div>
+				<div>{{ task.description }}</div>
+			</div>
+		</a>
+		<div class="task-checkbox-container">
+			<a
+				href="{% url 'todolist:invert-task-status' task.id %}"
+				class="task-checkbox-background"
+			>
+				{% if task.done %}
+				<img
+					src="{% static 'todolist/images/check.png' %}"
+					alt="Check"
+					style="width: 80%; height: 80%"
+				/>
+				{% endif %}
+			</a>
+		</div>
+	</div>
+	{% endfor %}
+</div>
+
+{% endblock content %}

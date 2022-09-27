@@ -1,0 +1,47 @@
+.task-container {
+	width: 100%;
+	background-color: #dcdcdc;
+	padding: 12px 24px;
+	border-radius: 24px;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	gap: 12px;
+}
+
+.task-title {
+	font-size: x-large;
+	font-weight: bolder;
+	font-family: "Courier New", Courier, monospace;
+	color: black;
+}
+
+.task-checkbox-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.task-checkbox-background {
+	background-color: white;
+	min-width: 36px;
+	min-height: 36px;
+	max-width: 36px;
+	max-height: 36px;
+	border-radius: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+hr {
+	margin: 0;
+	width: 100%;
+}
+
+.task-description {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
