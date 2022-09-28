@@ -4,13 +4,17 @@
 
 ### User 1
 
+```
 username: hahahihi
 password: tugaspbp
+```
 
 # User 2
 
+```
 username: usertodolist
 password tugaspbp
+```
 
 ## The use of `{% csrf_token %}` on `<form>` elements
 
@@ -18,7 +22,7 @@ Django has a `{% csrf_token %}` tag that is implemented to avoid malicious attac
 
 ## Making a `<form>` element without the use of generators such as `{{ form.as_table }}`
 
-- **It is** possible to make a form without the use generators, we just need to make inputs with certain names
+**It is** possible to make a form without the use generators, we just need to make inputs with certain names
 
 For example:
 If you want to make a form with a name, email, and password
@@ -57,13 +61,13 @@ As can be seen above, the datas from the inputs will be passed on to the server 
 
 I made a `Task` model with
 
-- `user`
-- `date`
-- `title`
-- `description`
-- `is_finished`
+- `user = models.ForeignKey(User, on_delete=models.CASCADE)`
+- `date = models.DateTimeField("Date created", default=timezone.now)`
+- `title = models.CharField(max_length=50)`
+- `description = models.TextField()`
+- `is_finished = models.BooleanField(default=False)`
 
-### `views.py` and `templates` and `urls.py`
+### `views.py`, `urls.py` and `templates`
 
 - `show_todolist` with `@login_required` decorator
   - Shows tasks of the user
