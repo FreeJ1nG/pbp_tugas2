@@ -1,3 +1,102 @@
+# Tugas 5 PBP 6 Okt 2022
+
+## Perbedaan inline, internal, dan external CSS
+
+### Internal CSS
+
+- Perubahan pada Internal CSS hanya berlaku pada satu halaman saja.
+- Anda tidak perlu melakukan upload beberapa file karena HTML dan CSS berada dalam satu file.
+- Class dan ID bisa digunakan oleh internal stylesheet.
+- Tidak efisien apabila Anda ingin menggunakan CSS yang sama dalam beberapa file.
+- Membuat performa website lebih lambat. Sebab, CSS yang berbeda-beda akan mengakibatkan loading ulang setiap kali Anda ganti halaman website.
+
+### External CSS
+
+- Ukuran file HTML akan menjadi lebih kecil dan struktur dari kode HTML jadi lebih rapi.
+- Loading website menjadi lebih cepat.
+  File CSS dapat digunakan di beberapa halaman website sekaligus.
+
+### Inline CSS
+
+- Sangat membantu ketika Anda hanya ingin menguji dan melihat perubahan pada satu elemen.
+- Berguna untuk memperbaiki kode dengan cepat.
+- Proses permintaan HTTP yang lebih kecil dan proses load website akan lebih cepat.
+
+## HTML5 Tags
+
+### `<div>`
+
+> Menyatakan divisi atau suatu bagian dari dokumen.
+
+### `<ul>`
+
+> Unordered list
+
+### `<a>`
+
+> Hyperlink
+
+### `<input>`
+
+> Menyatakan tempat input untuk user
+
+### `<img>`
+
+> Menyatakan sebuah frame untuk gambar
+
+### `<h1> sampai <h6>`
+
+> Menyatakan header
+
+### `<i>`
+
+> Italic
+
+### `<u>`
+
+> Underline
+
+## CSS Selector
+
+### `.class`
+
+> Memililh semua elemen dengan `class="class"`
+
+### `.class1.class2`
+
+> Memilih semua elemen yang memiliki `class1` dan `class2` dalam classnya
+
+### `.class1 .class2`
+
+> Memilih semua elemen dengan class `class2` yang merupakan elemen dibawah `class1`
+
+### `#id`
+
+> Memilih semua elemen dengan `id="id"`
+
+### `*`
+
+> Memilih semua elemen
+
+## Proses membuat web responsive
+
+### Menggunakan `@media` pada css
+
+```css
+@media only screen and (min-width: 600px) {
+	.task-title {
+		font-size: x-large;
+		font-weight: bolder;
+		font-family: "Courier New", Courier, monospace;
+		color: black;
+		display: flex;
+		gap: 12px;
+	}
+}
+```
+
+Pada conton di atas, bisa dilihat bahwa class `.task-title` akan menjadi seperti yang diterakan di atas saat `width` dari `screen` $\geq$ `600 pixel`.
+
 # Tugas 4 PBP 27 September 2022
 
 ## User accounts for this assignment

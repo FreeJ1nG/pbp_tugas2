@@ -20,7 +20,7 @@
 				<div>{{ task.title }}</div>
 				<a
 					class="btn btn-danger"
-					style="font-weight: bold"
+					style="font-weight: bold; height: fit"
 					href="{% url 'todolist:delete_task' task.id %}"
 					>Delete</a
 				>
@@ -28,7 +28,7 @@
 			<div class="task-description">
 				<hr />
 				<div style="font-size: 12px">{{ task.date | naturaltime }}</div>
-				<pre>{{ task.description }}</pre>
+				<pre style="font-size: 14px">{{ task.description }}</pre>
 			</div>
 		</div>
 		<div class="task-checkbox-container">
