@@ -1,52 +1,151 @@
-{% extends 'base.html' %} {% block content %} {% load static %}
-<link rel="stylesheet" href="{% static 'todolist/style.css' %}" />
-{% load humanize %}
+{% extends 'base.html' %} {% block content %}
+<head>
+	{% load static %} {% load humanize %}
+	<link rel="stylesheet" href="{% static 'todolist/style.css' %}" />
+	<script>
+		$(document).ready(function () {
+			$("#create-task-button").click(function () {
+				$("#create-task-form").submit();
+			});
+			$("#delete-button").each(function (i, obj) {
+				console.log(obj);
+			});
+			$.get("http://127.0.0.1:8000/todolist/json/", function (data) {
+				data.map((d) => {
+					const task = d.fields;
+					const task_id = d.pk;
+					if (task.is_finished) {
+						$(".container").append(`
+						<div class="task-container">
+							<div style="display: flex; flex-direction: column; gap: 8px; flex-grow: 1">
+								<div class="task-title">
+									<div>${task.title}</div>
+									<button
+										class="btn btn-danger"
+										id="delete-button"
+										style="font-weight: bold; height: fit"
+									>
+										Delete
+									</button>
+									</div>
+									<div class="task-description">
+										<hr />
+										<div style="font-size: 12px">${task.date}</div>
+										<pre style="font-size: 14px">${task.description}</pre>
+									</div>
+								</div>
+								<div class="task-checkbox-container">
+									<a
+									href="http://127.0.0.1:8000/todolist/invert-task-status/${task_id}/"
+									class="task-checkbox-background box${task_id}"
+									>
+									<img src="/static/todolist/images/check.png" alt="check" style="width: 80%; height: 80%" />
+								</a>
+							</div>
+						</div>
+						`);
+					} else {
+						$(".container").append(`
+							<div class="task-container">
+								<div style="display: flex; flex-direction: column; gap: 8px; flex-grow: 1">
+									<div class="task-title">
+										<div>${task.title}</div>
+										<button
+											class="btn btn-danger"
+											id="delete-button"
+											style="font-weight: bold; height: fit"
+										>
+											Delete
+										</button>
+									</div>
+									<div class="task-description">
+										<hr />
+										<div style="font-size: 12px">${task.date}</div>
+										<pre style="font-size: 14px">${task.description}</pre>
+									</div>
+								</div>
+								<div class="task-checkbox-container">
+									<a
+									href="http://127.0.0.1:8000/todolist/invert-task-status/${task_id}/"
+									class="task-checkbox-background box${task_id}"
+									>
+								</a>
+							</div>
+						</div>
+						`);
+					}
+				});
+			});
+		});
+	</script>
+</head>
 
-<div class="container">
-	<a class="btn btn-primary" href="{% url 'todolist:create-task' %}">
-		<div style="display: flex; align-items: center; gap: 12px">
-			<div>Add new task</div>
-			<img
-				src="{% static 'todolist/images/plus.png' %}"
-				alt="plus"
-				style="width: 16px; height: 16px"
-			/>
-		</div>
-	</a>
-	{% for task in tasks %}
-	<div key="task.id" class="task-container">
-		<div style="display: flex; flex-direction: column; gap: 8px; flex-grow: 1">
-			<div class="task-title">
-				<div>{{ task.title }}</div>
-				<a
-					class="btn btn-danger"
-					style="font-weight: bold; height: fit"
-					href="{% url 'todolist:delete_task' task.id %}"
-					>Delete</a
-				>
+<div style="position: relative">
+	<div
+		class="modal fade"
+		id="create-modal"
+		aria-hidden="true"
+		aria-labelledby="exampleModalToggleLabel"
+		tabindex="-1"
+	>
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="exampleModalToggleLabel">
+						Create New Task
+					</h1>
+					<button
+						type="button"
+						class="btn-close"
+						data-bs-dismiss="modal"
+						aria-label="Close"
+					></button>
+				</div>
+				<div class="modal-body">
+					<form
+						id="create-task-form"
+						method="post"
+						action="http://127.0.0.1:8000/todolist/add/"
+					>
+						{% csrf_token %}
+						<label for="title" class="form-label">Title</label>
+						<input type="text" id="title" name="title" class="form-control" />
+						<label for="description" style="margin-top: 16px" class="form-label"
+							>Description</label
+						>
+						<textarea
+							type="text"
+							id="description"
+							name="description"
+							class="form-control"
+						></textarea>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button id="create-task-button" class="btn btn-primary">
+						Submit
+					</button>
+				</div>
 			</div>
-			<div class="task-description">
-				<hr />
-				<div style="font-size: 12px">{{ task.date | naturaltime }}</div>
-				<pre style="font-size: 14px">{{ task.description }}</pre>
-			</div>
-		</div>
-		<div class="task-checkbox-container">
-			<a
-				href="{% url 'todolist:invert-task-status' task.id %}"
-				class="task-checkbox-background"
-			>
-				{% if task.is_finished %}
-				<img
-					src="{% static 'todolist/images/check.png' %}"
-					alt="Check"
-					style="width: 80%; height: 80%"
-				/>
-				{% endif %}
-			</a>
 		</div>
 	</div>
-	{% endfor %}
-</div>
+	<div class="container">
+		<button
+			type="button"
+			class="btn btn-primary"
+			data-bs-toggle="modal"
+			data-bs-target="#create-modal"
+		>
+			<div style="display: flex; align-items: center; gap: 12px">
+				<div>Add new task</div>
+				<img
+					src="{% static 'todolist/images/plus.png' %}"
+					alt="plus"
+					style="width: 16px; height: 16px"
+				/>
+			</div>
+		</button>
+	</div>
 
-{% endblock content %}
+	{% endblock content %}
+</div>
