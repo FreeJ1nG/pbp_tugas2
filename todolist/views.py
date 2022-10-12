@@ -1,6 +1,6 @@
 import datetime
 from django.shortcuts import (render, redirect)
-from django.http import (Http404, HttpResponseRedirect, HttpResponse)
+from django.http import (Http404, HttpResponseRedirect, HttpResponse, JsonResponse)
 from django.core import serializers
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import (authenticate, login, logout)
@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.urls import reverse
 from django.utils import timezone
+from django.views.decorators.csrf import csrf_exempt
 from todolist.models import Task
 from project_django.settings import DOMAIN
 
@@ -36,12 +37,14 @@ def create_task(request):
   return render(request, "create_task.html", {})
 
 
+@csrf_exempt
 def delete(request, task_id):
   if request.method == "DELETE":
     task = Task.objects.get(id = task_id)
     task.delete()
     return redirect('todolist:show_todolist')
   raise Http404("Request method invalid")
+
 
 def delete_task(request, task_id):
   task = Task.objects.get(id = task_id)
@@ -99,14 +102,23 @@ def show_json(request):
   )
   
   
+@csrf_exempt
 @login_required(login_url='/todolist/login')
 def add_task(request):
   if request.method == "POST":
     title = request.POST.get("title")
     description = request.POST.get("description")
-    Task.objects.create(title=title, description=description, user=request.user)
+    task = Task.objects.create(title=title, description=description, user=request.user)
     response = HttpResponseRedirect(reverse('todolist:show_todolist'))
     response.set_cookie('last_update', timezone.now())
-    return response
+    return JsonResponse(
+      {
+        "title": task.title, 
+        "date": task.date, 
+        "is_finished": task.is_finished,
+        "description": task.description, 
+        "id": task.pk
+      }
+    )
   
   raise Http404("Invalid request method")
