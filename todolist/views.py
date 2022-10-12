@@ -6,9 +6,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import (authenticate, login, logout)
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse
 from django.utils import timezone
-from django.views.decorators.csrf import csrf_exempt
 from todolist.models import Task
 from project_django.settings import DOMAIN
 
@@ -102,7 +102,6 @@ def show_json(request):
   )
   
   
-@csrf_exempt
 @login_required(login_url='/todolist/login')
 def add_task(request):
   if request.method == "POST":

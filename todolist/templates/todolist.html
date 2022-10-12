@@ -70,10 +70,10 @@
 				formData = formData.slice(1, formData.length);
 				const mapped = formData.map((item) => ({ [item.name]: item.value }));
 				const data = Object.assign({}, ...mapped);
-				const resp = $.ajax({
+				$.ajax({
 					method: "POST",
 					url: "/todolist/add/",
-					data: data,
+					data: { ...data, csrfmiddlewaretoken: "{{csrf_token}}" },
 				}).done(function (resp) {
 					$(".container").append(new_entry(resp, resp.id));
 					$(function () {
@@ -92,6 +92,7 @@
 							$.ajax({
 								url: `/todolist/delete/${this_id}`,
 								type: "DELETE",
+								data: { csrfmiddlewaretoken: "{{csrf_token}}" },
 							});
 							location.reload();
 						});
